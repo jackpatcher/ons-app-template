@@ -1,0 +1,132 @@
+
+<!-- ONSEN UI -->
+<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+<script> ons.disableAutoStyling(); ons.platform.select('ios'); </script>
+
+<!-- JQUERY -->
+<script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+
+
+<ons-splitter>
+  <ons-splitter-side id="menu" side="left" width="220px" collapse   icon="ion-ios-hammer"  >
+    <ons-page>
+      <ons-list>
+        <ons-list-item onclick="fn.load('home.html')" tappable>
+          Home
+        </ons-list-item>
+        <ons-list-item onclick="fn.load('settings.html')" tappable>
+          Settings
+        </ons-list-item>
+        <ons-list-item onclick="fn.load('about.html')" tappable>
+          About
+        </ons-list-item>
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
+  <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+</ons-splitter>
+
+<template id="home.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">
+        Main
+      </div>
+    </ons-toolbar>
+     
+    <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+      Swipe right to open the menu!
+    </p>
+  </ons-page>
+</template>
+
+<template id="settings.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">
+        Settings
+      </div>
+    </ons-toolbar>
+    
+     <ons-tabbar  position="auto" >
+    <ons-tab page="tab1.html" label="วันนี้" icon="fa-building"   id="thaibadge" active>    </ons-tab>
+    <ons-tab page="tab2.html" label="นักเรียน" icon="ion-ios-home,material:md-home" active-icon="md-face">    </ons-tab>
+    <ons-tab page="tab3.html" label="ห้องเรียน" icon="ion-ios-home,material:md-home" active-icon="md-face">    </ons-tab>
+    <ons-tab page="tab4.html" label="คาบ" icon="ion-ios-home,material:md-home" active-icon="md-face">    </ons-tab>
+  </ons-tabbar>
+  </ons-page>
+</template>
+
+<template id="about.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">
+        About
+      </div>
+    </ons-toolbar>
+  </ons-page>
+</template>
+
+<template id="tab1.html">
+  <ons-page id="Tab1" >  
+    <p style="text-align:center;"> รายงาน วันนี้</p>
+    <div id="loadingThai"></div>
+    <div id="chartdivThai"> </div>
+  </ons-page>
+</template>
+
+<template id="tab2.html">
+  <ons-page id="Tab2">
+  <p style="text-align:center;"> รายงาน นักเรียน</p>
+  <div id="loading"></div>
+  <div id="chartdivSouth"> </div>
+  </ons-page>
+</template>
+
+<template id="tab3.html">
+  <ons-page id="Tab2">
+  <p style="text-align:center;"> รายงาน ห้องเรียน</p>
+  <div id="loading"></div>
+  <div id="chartdivSouth"> </div>
+  </ons-page>
+</template>
+
+<template id="tab4.html">
+  <ons-page id="Tab2">
+  <p style="text-align:center;"> รายงาน คาบ</p>
+  <div id="loading"></div>
+  <div id="chartdivSouth"> </div>
+  </ons-page>
+</template>
+
+<script>
+window.fn = {};
+
+window.fn.open = function() {
+  var menu = document.getElementById('menu');
+  menu.open();
+};
+
+window.fn.load = function(page) {
+  var content = document.getElementById('content');
+  var menu = document.getElementById('menu');
+  content.load(page)
+    .then(menu.close.bind(menu));
+};
+</script>
+
